@@ -10,6 +10,7 @@ gem 'sinatra-contrib'
 gem 'webrick'
 gem 'rack'
 gem 'capybara'
+gem 'launchy'
 
 group :development, :test do
   gem "rspec"
