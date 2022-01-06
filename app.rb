@@ -1,41 +1,15 @@
-require 'sinatra'
-require "sinatra/reloader" if development?
+require 'sinatra/base'
+require 'sinatra/reloader'
 
-get '/' do
-  "Hello Josh and Kat!"
+class Battle < Sinatra::Base
+  configure :development do
+    register Sinatra::Reloader
+  end
+
+  get '/' do 
+    "Testing infrastructure working!"
+  end
+
+  # # Start the server if this file is executed directly (do not change the line below)
+  run! if app_file == $0
 end
-
-get '/secret' do
-  "Makers is quite challenging"
-end 
-
-get '/non-secret' do
-  "Always check your syntax"
-end 
-
-get '/new-year' do
-  'HAPPY NEW YEAR!'
-end
-
-get '/cat' do
-  erb(:index)
-  @name = ["Amigo", "Misty", "Almond"].sample
-end
-
-get '/random-cat' do
-  @name = ["Amigo", "Misty", "Almond"].sample 
-  erb(:index)
-end   
-
-get '/cat-form' do 
-  erb(:cat_form)
-end
-
-post '/named-cat' do
-  p params 
-  @name = params[:name]
-  erb(:index)
-end  
-
-
-
